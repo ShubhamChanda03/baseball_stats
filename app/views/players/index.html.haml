@@ -1,0 +1,34 @@
+%turbo-frame#players
+  %table
+    %thead
+      %tr
+        %th
+          = link_to 'Surname', players_path(sort: 'surname', direction: toggle_direction(params[:direction])), data: { turbo_frame: "players" }
+        %th
+          = link_to 'Given Name', players_path(sort: 'given_name', direction: toggle_direction(params[:direction])), data: { turbo_frame: "players" }
+        %th
+          = link_to 'AVG', players_path(sort: 'avg', direction: toggle_direction(params[:direction])), data: { turbo_frame: "players" }
+        %th
+          = link_to 'HR', players_path(sort: 'home_runs', direction: toggle_direction(params[:direction])), data: { turbo_frame: "players" }
+        %th
+          = link_to 'RBI', players_path(sort: 'rbi', direction: toggle_direction(params[:direction])), data: { turbo_frame: "players" }
+        %th
+          = link_to 'RUNS', players_path(sort: 'runs', direction: toggle_direction(params[:direction])), data: { turbo_frame: "players" }
+        %th
+          = link_to 'SB', players_path(sort: 'steals', direction: toggle_direction(params[:direction])), data: { turbo_frame: "players" }
+        %th
+          = link_to 'OPS', players_path(sort: 'ops', direction: toggle_direction(params[:direction])), data: { turbo_frame: "players" }
+
+    %tbody
+      - @players.each do |player|
+        %tr
+          %td= player.surname
+          %td= player.given_name
+          %td= player.avg
+          %td= player.home_runs
+          %td= player.rbi
+          %td= player.runs
+          %td= player.steals
+          %td= player.ops
+
+  = paginate @players, remote: true
